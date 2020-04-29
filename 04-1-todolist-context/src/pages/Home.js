@@ -10,10 +10,10 @@ const { Content } = Layout
 const Home = () => {
   const history = useHistory()
 
-  const { todos } = useContext(TodoContext)
+  const { todos, dispatch } = useContext(TodoContext)
 
   const onDelete = (id) => {
-    console.log('delete id: ', id)
+    dispatch({type: 'check-todo', id})
   }
 
   useEffect(()=>{

@@ -2,7 +2,7 @@ export const initState = {
   todos: []
 }
 
-export function todoReducer(state=initState, action) {
+export function todoReducer(state = initState, action) {
   switch (action.type) {
     case 'create-todo':
       return {
@@ -10,7 +10,11 @@ export function todoReducer(state=initState, action) {
       }
     case 'update-todos':
       return {
-        todos: state.todos.map((val, idx)=> idx === Number(action.id) ? action.payload : val)
+        todos: state.todos.map((val, idx) => idx === Number(action.id) ? action.payload : val)
+      }
+    case 'check-todo':
+      return {
+        todos: state.todos.filter((val, idx) => idx !== Number(action.id))
       }
     default:
       return state
