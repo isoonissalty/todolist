@@ -3,14 +3,18 @@ import React, { useState } from 'react';
 
 function App() {
 
+  // this state store value from input field
   const [text, setText] = useState('')
+  // this state store list of todos
   const [todos, setTodos] = useState([])
 
+  // set text when input has change
   const onChange = (e) => {
     let { value } = e.target
     setText(value)
   }
 
+  // action on click button to add todo
   const addTodo = () => {
     if (text !== '') {
       setTodos(
@@ -23,11 +27,12 @@ function App() {
     }
   }
 
+  // action on click button to delete todo by index
   const removeTodo = (index) => {
-
     setTodos([
-      ...todos.splice(0, index),
-      ...todos.splice(1, todos.length)
+      // combine new array without index
+      ...todos.splice(0, index), // split front except index
+      ...todos.splice(1, todos.length) // split tail
     ])
   }
 
