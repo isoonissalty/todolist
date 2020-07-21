@@ -30,7 +30,7 @@ function App() {
   // action on click button to delete todo by index
   const removeTodo = (index) => {
     setTodos([
-      // combine new array without index
+      // combine new array without remove index
       ...todos.splice(0, index), // split front except index
       ...todos.splice(1, todos.length) // split tail
     ])
