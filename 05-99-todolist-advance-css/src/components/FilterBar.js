@@ -2,7 +2,7 @@ import React from 'react'
 
 const FilterBar = ({ setFilter }) => {
   return (
-    <div>
+    <span>
       <span>filter: </span>
       <button onClick={() => setFilter('done')}>done</button>
       <button onClick={() => setFilter('not done')}>not done</button>
@@ -12,7 +12,7 @@ const FilterBar = ({ setFilter }) => {
         ))
       }
       <button onClick={() => setFilter('none')}>clear</button>
-    </div>
+    </span>
   )
 }
 
