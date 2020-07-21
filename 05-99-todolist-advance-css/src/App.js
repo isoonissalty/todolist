@@ -28,7 +28,7 @@ function App() {
     e.preventDefault()
     setTodos([...todos, form])
     setForm({
-      id: todos.length+1,
+      id: todos.length + 1,
       title: '',
       detail: '',
       due: formatDate(today),
@@ -38,7 +38,7 @@ function App() {
   }
 
   const updateTodo = (id) => {
-    let temp = {...todos[id]}
+    let temp = { ...todos[id] }
     temp = {
       ...temp,
       isDone: !todos[id].isDone
@@ -55,7 +55,7 @@ function App() {
 
   const todoList = (value, index) => {
     return (
-      < li key={index} style={{ color: value.color }}>
+      <li key={index} style={{ color: value.color }}>
         id: {value.id} <br />
         title: {value.title} <br />
         detail: {value.detail} <br />
