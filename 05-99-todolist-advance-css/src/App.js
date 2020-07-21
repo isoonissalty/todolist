@@ -25,13 +25,79 @@ const Content = styled.div`
 
 const Section = styled.div`
   display: flex;
-  ${props => props.column && `flex-direction: column`}
-  ${props => props.spaceBetween && `justify-content: space-between`}
+  ${props => props.column && `flex-direction: column;`}
+  ${props => props.spaceBetween && `justify-content: space-between;`}
+  ${props => props.height && `height: ${props.height};`}
+  flex-wrap: wrap;
+  overflow: auto;
 `
 
 function App() {
   const [isOpen, open, close] = useModal()
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([{
+    id: 0,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 1,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 2,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 3,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 4,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 5,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 6,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  },
+  {
+    id: 7,
+    title: '',
+    detail: '',
+    due: formatDate(today),
+    color: '#000000',
+    isDone: false,
+  }])
   const [filter, setFilter] = useState('none')
   const [form, setForm, onChange] = useForm({
     id: todos.length,
@@ -57,23 +123,26 @@ function App() {
   }
 
   const updateTodo = (id) => {
-    let temp = { ...todos[id] }
-    temp = {
-      ...temp,
-      isDone: !todos[id].isDone
-    }
-    let newTodos = todos.map((val, index) => {
-      if (index === id) return temp
-      else return val
+    let temp = todos.find(val => val.id === id)
+    temp = { ...temp, isDone: !temp.isDone }
+    let newTodos = todos.map(val => {
+      return val.id === id ?
+        temp : val
     })
     setTodos(newTodos)
   }
 
   const deleteTodo = (id) => {
-    setTodos([
-      ...todos.splice(0, id),
-      ...todos.splice(1, todos.length)
-    ])
+    let temp = todos.filter(val => val.id !== id)
+    setTodos(temp)
+    setForm({
+      id: temp.length,
+      title: '',
+      detail: '',
+      due: formatDate(today),
+      color: '#000000',
+      isDone: false,
+    })
   }
 
   const filteredItem = (todos) => {
@@ -97,11 +166,12 @@ function App() {
           <FilterBar setFilter={setFilter} />
         </Section>
         <FormTodo isOpen={isOpen} addTodo={addTodo} form={form} onChange={onChange} close={close} />
-        <ul>
+        <Section height='100%'>
           {
-            filteredItem(todos).map((value, index) => <TodoItem value={value} index={index} updateTodo={updateTodo} deleteTodo={deleteTodo} />)
+            filteredItem(todos).map((value, index) =>
+              <TodoItem value={value} index={index} updateTodo={updateTodo} deleteTodo={deleteTodo} />)
           }
-        </ul>
+        </Section>
       </Content>
     </Container >
   );
