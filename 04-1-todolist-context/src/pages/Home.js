@@ -16,10 +16,6 @@ const Home = () => {
     dispatch({type: 'check-todo', id})
   }
 
-  useEffect(()=>{
-    console.log(todos)
-  }, [todos])
-
   return (
     <Layout className="layout">
       <Content style={{ padding: '50px 50px' }}>

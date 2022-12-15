@@ -51,7 +51,6 @@ const Create = ({ edit }) => {
               initialValues={payload}
               onFinish={onSubmit}
             >
-
               <Form.Item
                 label="Title"
                 name="title"
