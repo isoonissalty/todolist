@@ -24,9 +24,8 @@ function App() {
     })
   }
 
-  const addTodo = (e) => {
-    e.preventDefault()
-    setTodos([...todos, form])
+  const addTodo = () => {
+    setTodos((prev) => [...prev, form])
     setForm({
       id: todos.length+1,
       title: '',
@@ -48,14 +47,12 @@ function App() {
       else return val
     })
 
-    console.log(newTodos)
-
     setTodos(newTodos)
   }
 
   const todoList = (value, index) => {
     return (
-      < li key={index} style={{ color: value.color }}>
+      <li key={index} style={{ color: value.color }}>
         id: {value.id} <br />
         title: {value.title} <br />
         detail: {value.detail} <br />

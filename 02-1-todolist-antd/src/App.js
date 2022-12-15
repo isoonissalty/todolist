@@ -7,16 +7,11 @@ const { Content } = Layout
 function App() {
 
   const [text, setText] = useState('')
-  const [todos, setTodo] = useState([])
+  const [todos, setTodos] = useState([])
 
   const addTodo = () => {
-    if (text !== '') {
-      setTodo([
-        text,
-        ...todos
-      ])
-    }
-
+    if (text === '') return
+    setTodos((prev) => [ ...prev, text])
     setText('')
   }
 

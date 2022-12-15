@@ -12,15 +12,9 @@ function App() {
   }
 
   const addTodo = () => {
-    if (text !== '') {
-      setTodos(
-        [
-          text,
-          ...todos
-        ]
-      )
-      setText('')
-    }
+    if (text === '') return
+    setTodos((prev) => [ ...prev, text])
+    setText('')
   }
 
   return (

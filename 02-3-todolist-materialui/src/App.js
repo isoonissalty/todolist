@@ -18,22 +18,16 @@ function App() {
   const classes = useStyle()
 
   const [text, setText] = useState('')
-  const [todos, setTodo] = useState([])
+  const [todos, setTodos] = useState([])
 
   const onChange = (e) => {
-    let { value } = e.target
-    setText(value)
+    setText(e.target.value)
   }
 
   const addTodo = () => {
-    if (text !== '') {
-      setTodo([
-        text,
-        ...todos
-      ])
-
-      setText('')
-    }
+    if (text === '') return
+    setTodos((prev) => [ ...prev, text])
+    setText('')
   }
 
   return (
